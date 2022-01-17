@@ -14,7 +14,8 @@ npm install
 npm run make
 ```
 
-## CREDIT:
-- [vite-react-electron](https://github.com/caoxiemeihao/vite-react-electron)
-- [electron-forge](https://github.com/electron-userland/electron-forge/issues/26)
-- [electron-forge-maker-appimage](https://github.com/trusktr/electron-forge-maker-appimage/tree/patch-1)
+## CREDIT
+
+- [Vite-react-electron](https://github.com/caoxiemeihao/vite-react-electron) for the awesome template.
+- [Electron-forge](https://github.com/electron-userland/electron-forge/issues/26) for being the easiest tool to build and package Electron apps.
+- [Electron-forge-maker-appimage](https://github.com/trusktr/electron-forge-maker-appimage/tree/patch-1) for being the most convenient AppImage maker.
