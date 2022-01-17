@@ -6,10 +6,9 @@ import { useLoading } from "./loading";
 
 const isDev = process.env.NODE_ENV === "development";
 const { appendLoading, removeLoading } = useLoading();
-
+// console.log(useLoading);
 (async () => {
-	await domReady();
-
+	await domReady("complete");
 	appendLoading();
 })();
 
