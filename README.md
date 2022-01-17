@@ -14,6 +14,6 @@ npm run make
 ```
 
 ## CREDIT:
-[vite-react-electron](https://github.com/caoxiemeihao/vite-react-electron)
-[electron-forge](https://github.com/electron-userland/electron-forge/issues/26)
-[electron-forge-maker-appimage](https://github.com/trusktr/electron-forge-maker-appimage/tree/patch-1)
+- [vite-react-electron](https://github.com/caoxiemeihao/vite-react-electron)
+- [electron-forge](https://github.com/electron-userland/electron-forge/issues/26)
+- [electron-forge-maker-appimage](https://github.com/trusktr/electron-forge-maker-appimage/tree/patch-1)
