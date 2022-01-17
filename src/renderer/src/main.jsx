@@ -10,9 +10,9 @@ ReactDOM.render(
     <App />
   </React.StrictMode>,
   document.getElementById('root'),
-  () => {
-    window.bridge.removeLoading()
-  },
+  // () => {
+  //   window.bridge.removeLoading()
+  // },
 )
 
 // -----------------------------------------------------------

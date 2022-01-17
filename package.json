@@ -7,24 +7,31 @@
   "main": "dist/main/index.cjs",
   "scripts": {
     "dev": "node scripts/watch.mjs",
-    "build": "node scripts/build.mjs && electron-builder"
+    "build": "node scripts/build.mjs && npm run make",
+    "start": "electron-forge start",
+    "setup": "npx electron-forge import",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "engines": {
     "node": ">=14.17.0"
   },
   "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
     "electron-store": "^8.0.1"
   },
   "devDependencies": {
-    "@types/react": "^17.0.33",
-    "@types/react-dom": "^17.0.10",
+    "@electron-forge/cli": "^6.0.0-beta.63",
+    "@electron-forge/maker-deb": "^6.0.0-beta.63",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.63",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
+    "@electron-forge/maker-zip": "^6.0.0-beta.63",
     "@vitejs/plugin-react": "^1.0.7",
     "antd": "^4.16.13",
     "electron": "^15.3.0",
-    "electron-builder": "^22.13.1",
+    "electron-forge-maker-appimage": "trusktr/electron-forge-maker-appimage#patch-1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "typescript": "^4.4.4",
     "vite": "^2.6.13",
     "vite-plugin-resolve": "^1.3.1"
   },
@@ -32,5 +39,18 @@
     "//": "Used in build scripts",
     "HOST": "127.0.0.1",
     "PORT": 3344
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "electron-forge-maker-appimage",
+          "config": {
+            "name": "vite_react_electron"
+          }
+        }
+      ]
+    }
   }
 }

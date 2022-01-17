@@ -9,9 +9,9 @@
 
 ## 概述
 
-- 主进程(main-process)、渲染进程(renderer-process)、预加载脚本(preload-script) 全部在 `configs/xxx.ts` 中配置 -- 全量级的 `Vite` 编译还是相当快的
+- 主进程(main-process)、渲染进程(renderer-process)、预加载脚本(preload-script) 全部在 `configs/xxx.js` 中配置 -- 全量级的 `Vite` 编译还是相当快的
 
-- `scripts/build.mjs` 只是调用了 `Vite` 的 API 并使用 `configs/xxx.ts` 配置文件进行构建
+- `scripts/build.mjs` 只是调用了 `Vite` 的 API 并使用 `configs/xxx.js` 配置文件进行构建
 
 - `scripts/watch.mjs` 与 `build.mjs` 区别是 主进程(main-process)、预加载脚本(preload-script) 配置了 `watch` 选项；渲染进程则是使用了 `require('vite').createServer`
 
@@ -40,9 +40,9 @@
 ```tree
 ├
 ├── configs
-├   ├── vite-main.config.ts          主进程配置文件，编译 src/main
-├   ├── vite-preload.config.ts       预加载脚本配置文件，编译 src/preload
-├   ├── vite-renderer.config.ts      渲染进程配置文件，编译 src/renderer
+├   ├── vite-main.config.js          主进程配置文件，编译 src/main
+├   ├── vite-preload.config.js       预加载脚本配置文件，编译 src/preload
+├   ├── vite-renderer.config.js      渲染进程配置文件，编译 src/renderer
 ├
 ├── dist                             构建后，根据 src 目录生成
 ├   ├── main
@@ -66,7 +66,7 @@
 
 #### 推荐所有的 NodeJs、Electron API 通过 `Preload-script` 注入到 渲染进程中
 
-* **src/preload/index.ts**
+* **src/preload/index.js**
 
   ```typescript
   import fs from 'fs'
@@ -79,7 +79,7 @@
   })
   ```
 
-* **src/renderer/src/global.d.ts**
+* **src/renderer/src/global.d.js**
 
   ```typescript
   // Defined on the window
@@ -91,7 +91,7 @@
   }
   ```
 
-* **src/renderer/src/main.tsx**
+* **src/renderer/src/main.jsx**
 
   ```typescript
   // Use Electron, NodeJs API in Renderer-process

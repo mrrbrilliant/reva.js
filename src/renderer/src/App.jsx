@@ -29,7 +29,7 @@ function App() {
           </Button>
         </p>
         <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
+          Edit <code>App.jsx</code> and save to test HMR updates.
         </p>
         <div>
           <a

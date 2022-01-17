@@ -9,11 +9,11 @@
 
 ## Overview
 
-- All config files `Main-process`, `Renderer-process` and `Preload-script` they are in `configs/*.ts`.
+- All config files `Main-process`, `Renderer-process` and `Preload-script` they are in `configs/*.js`.
 
 - All files are built using `Vite`, is supper fast.
 
-- `scripts/build.mjs` just calls the `Vite` API and uses the `configs/*.ts` config file to build.
+- `scripts/build.mjs` just calls the `Vite` API and uses the `configs/*.js` config file to build.
 
 - The difference between `scripts/watch.mjs` and `build.mjs` is that the watch option is configured for the Main-process and Preload-script. The Renderer-process uses `require ('vite').createServer`
 
@@ -42,9 +42,9 @@ Once `dev` or `build` npm-script executed will be generate named `dist` folder. 
 ```tree
 ├
 ├── configs
-├   ├── vite-main.config.ts          Main-process config file, for -> src/main
-├   ├── vite-preload.config.ts       Preload-script config file, for -> src/preload
-├   ├── vite-renderer.config.ts      Renderer-script config file, for -> src/renderer
+├   ├── vite-main.config.js          Main-process config file, for -> src/main
+├   ├── vite-preload.config.js       Preload-script config file, for -> src/preload
+├   ├── vite-renderer.config.js      Renderer-script config file, for -> src/renderer
 ├
 ├── dist                             After build, it's generated according to the "src" directory
 ├   ├── main
@@ -68,7 +68,7 @@ Once `dev` or `build` npm-script executed will be generate named `dist` folder. 
 
 #### All Electron, NodeJs API invoke passed `Preload-script`
 
-* **src/preload/index.ts**
+* **src/preload/index.js**
 
   ```typescript
   import fs from 'fs'
@@ -81,7 +81,7 @@ Once `dev` or `build` npm-script executed will be generate named `dist` folder. 
   })
   ```
 
-* **src/renderer/src/global.d.ts**
+* **src/renderer/src/global.d.js**
 
   ```typescript
   // Defined on the window
@@ -93,7 +93,7 @@ Once `dev` or `build` npm-script executed will be generate named `dist` folder. 
   }
   ```
 
-* **src/renderer/src/main.tsx**
+* **src/renderer/src/main.jsx**
 
   ```typescript
   // Use Electron, NodeJs API in Renderer-process

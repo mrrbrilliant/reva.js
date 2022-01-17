@@ -1,54 +1,54 @@
-process.env.NODE_ENV = 'development'
+process.env.NODE_ENV = "development";
 
-import electron from 'electron'
-import { spawn } from 'child_process'
-import { createRequire } from 'module'
-import { createServer, build as viteBuild } from 'vite'
+import electron from "electron";
+import { spawn } from "child_process";
+import { createRequire } from "module";
+import { createServer, build as viteBuild } from "vite";
 
-const require = createRequire(import.meta.url)
-const pkg = require('../package.json')
+const require = createRequire(import.meta.url);
+const pkg = require("../package.json");
 
 /**
  * @param {{ name: string; configFile: string; writeBundle: import('rollup').OutputPlugin['writeBundle'] }} param0
  * @returns {import('rollup').RollupWatcher}
  */
 function getWatcher({ name, configFile, writeBundle }) {
-  return viteBuild({
-    // Options here precedence over configFile
-    mode: process.env.NODE_ENV,
-    build: {
-      watch: {},
-    },
-    configFile,
-    plugins: [{ name, writeBundle }],
-  })
+	return viteBuild({
+		// Options here precedence over configFile
+		mode: process.env.NODE_ENV,
+		build: {
+			watch: {},
+		},
+		configFile,
+		plugins: [{ name, writeBundle }],
+	});
 }
 
 /**
  * @returns {Promise<import('rollup').RollupWatcher>}
  */
 async function watchMain() {
-  /**
-   * @type {import('child_process').ChildProcessWithoutNullStreams | null}
-   */
-  let electronProcess = null
+	/**
+	 * @type {import('child_process').ChildProcessWithoutNullStreams | null}
+	 */
+	let electronProcess = null;
 
-  /**
-   * @type {import('rollup').RollupWatcher}
-   */
-  const watcher = await getWatcher({
-    name: 'electron-main-watcher',
-    configFile: 'configs/vite.main.ts',
-    writeBundle() {
-      electronProcess && electronProcess.kill()
-      electronProcess = spawn(electron, ['.'], {
-        stdio: 'inherit',
-        env: Object.assign(process.env, pkg.env),
-      })
-    },
-  })
+	/**
+	 * @type {import('rollup').RollupWatcher}
+	 */
+	const watcher = await getWatcher({
+		name: "electron-main-watcher",
+		configFile: "configs/vite.main.js",
+		writeBundle() {
+			electronProcess && electronProcess.kill();
+			electronProcess = spawn(electron, ["."], {
+				stdio: "inherit",
+				env: Object.assign(process.env, pkg.env),
+			});
+		},
+	});
 
-  return watcher
+	return watcher;
 }
 
 /**
@@ -56,22 +56,22 @@ async function watchMain() {
  * @returns {Promise<import('rollup').RollupWatcher>}
  */
 async function watchPreload(viteDevServer) {
-  return getWatcher({
-    name: 'electron-preload-watcher',
-    configFile: 'configs/vite.preload.ts',
-    writeBundle() {
-      viteDevServer.ws.send({
-        type: 'full-reload',
-      })
-    },
-  })
+	return getWatcher({
+		name: "electron-preload-watcher",
+		configFile: "configs/vite.preload.js",
+		writeBundle() {
+			viteDevServer.ws.send({
+				type: "full-reload",
+			});
+		},
+	});
 }
 
 // bootstrap
 const viteDevServer = await createServer({
-  configFile: 'configs/vite.renderer.ts',
-})
+	configFile: "configs/vite.renderer.js",
+});
 
-await viteDevServer.listen()
-await watchPreload(viteDevServer)
-await watchMain()
+await viteDevServer.listen();
+await watchPreload(viteDevServer);
+await watchMain();
