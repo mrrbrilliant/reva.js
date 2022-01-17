@@ -1,5 +1,7 @@
 import fs from "fs";
 import path from "path";
+import os from "os";
+import { spawn } from "child_process";
 import { contextBridge, ipcRenderer } from "electron";
 import { domReady } from "./utils";
 import { useLoading } from "./loading";
@@ -19,6 +21,8 @@ contextBridge.exposeInMainWorld("bridge", {
 	__filename,
 	fs,
 	path,
+	os,
+	spawn,
 	ipcRenderer: withPrototype(ipcRenderer),
 	removeLoading,
 });

@@ -47,10 +47,8 @@ export function useLoading() {
 			document.body.appendChild(oDiv);
 		},
 		removeLoading: () => {
-			setTimeout(() => {
-				document.getElementById("app-loading-style").remove();
-				document.getElementsByClassName("app-loading-wrap")[0].remove();
-			}, 100);
+			document.getElementById("app-loading-style").remove();
+			document.getElementsByClassName("app-loading-wrap")[0].remove();
 		},
 	};
 }

@@ -16,8 +16,9 @@ async function createWindow() {
 		webPreferences: {
 			preload: join(__dirname, "../preload/index.cjs"),
 		},
+		show: false,
 	});
-
+	win.setMenu(null);
 	if (app.isPackaged) {
 		win.loadFile(join(__dirname, "../renderer/index.html"));
 	} else {
@@ -30,7 +31,8 @@ async function createWindow() {
 
 	// Test active push message to Renderer-process.
 	win.webContents.on("did-finish-load", () => {
-		win?.webContents.send("main-process-message", new Date().toLocaleString());
+		win.show();
+		win.webContents.send("main-process-message", new Date().toLocaleString());
 	});
 }
 
@@ -40,6 +42,7 @@ app.on("window-all-closed", () => {
 	win = null;
 	if (process.platform !== "darwin") {
 		app.quit();
+		app.exit();
 	}
 });
 

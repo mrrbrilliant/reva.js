@@ -11,7 +11,7 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root'),
   () => {
-    window.bridge.removeLoading()
+    setTimeout(() =>window.bridge.removeLoading(), 100)
   },
 )
 

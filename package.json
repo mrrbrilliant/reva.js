@@ -28,10 +28,13 @@
     "@electron-forge/maker-zip": "^6.0.0-beta.63",
     "@vitejs/plugin-react": "^1.0.7",
     "antd": "^4.16.13",
+    "autoprefixer": "^10.4.2",
     "electron": "^15.3.0",
     "electron-forge-maker-appimage": "trusktr/electron-forge-maker-appimage#patch-1",
+    "postcss": "^8.4.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "tailwindcss": "^3.0.15",
     "vite": "^2.6.13",
     "vite-plugin-resolve": "^1.3.1"
   },
